@@ -1,0 +1,57 @@
+<view class="page">
+    <view class="page__bd">
+        <view class="weui-panel weui-panel_access">
+            <view class="weui-panel__bd">
+            <block wx:for="{{list}}">
+                <view class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                    <view class="weui-media-box__hd weui-media-box__hd_in-appmsg" wx:if="{{item.img}}">
+                        <image class="weui-media-box__thumb" src="{{item.img}}" />
+                    </view>
+                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                        <view class="weui-media-box__title">{{item.year}}年{{item.month}}月{{item.day}}日</view>
+                        <view class="weui-media-box__desc">{{item.title}}</view>
+                    </view>
+                    
+                </view></block>
+            </view>
+        </view>
+    </view>
+</view>
+
+
+<view class="commodity_screen" bindtap="hideModal" wx:if="{{showModalStatus}}"></view>
+<view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showModalStatus}}">
+<view class="selected_date">
+  <view bindtap="preMonth">
+    <image class="select_icon" src="/images/left.png"></image>
+  </view>
+  <view class="text_center">{{curYear+'-'+curMonth}}</view>
+  <view style="text-align:right;" bindtap="nextMonth">
+    <image class="select_icon" src="/images/right.png"></image>
+  </view>
+</view>
+<view class="calendar_panel">
+  <view class="calendar_box">
+    <view class="weekday_label">日</view>
+    <view class="weekday_label">一</view>
+    <view class="weekday_label">二</view>
+    <view class="weekday_label">三</view>
+    <view class="weekday_label">四</view>
+    <view class="weekday_label">五</view>
+    <view class="weekday_label">六</view>
+  </view>
+  <view class="calendar_box" wx:for="{{dateList}}" wx:for-item="week">
+    <view class="weekday_label" wx:for="{{week}}">
+      <text class="{{item.value==selectedDate?'active_date':''}}" bindtap="selectDate" data-date="{{item}}">{{item.date}}</text>
+    </view>
+  </view>
+</view>
+</view>
+<view class="fixed-btn">
+  <view bindtap="showModal" class="tel-btn">{{selectedDate}}</view>
+</view>
+<view class="loading_box" wx:if="{{showLoading}}">
+  <view class="loading3 loading3_1"></view>
+  <view class="loading3 loading3_2"></view>
+  <view class="loading3 loading3_3"></view>
+</view>
